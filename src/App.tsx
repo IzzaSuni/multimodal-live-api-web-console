@@ -33,7 +33,7 @@ const uri = `wss://${host}/ws/google.ai.generativelanguage.v1alpha.GenerativeSer
 function App() {
   // this video reference is used for displaying the active stream, whether that is the webcam or screen capture
   // feel free to style as you see fit
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
   // either the screen capture, the video or null, if null we hide it
   const [videoStream, setVideoStream] = useState<MediaStream | null>(null);
 
@@ -55,14 +55,11 @@ function App() {
                 playsInline
               />
             </div>
-
             <ControlTray
-              videoRef={videoRef}
+              videoRef={videoRef as React.RefObject<HTMLVideoElement>}
               supportsVideo={true}
               onVideoStreamChange={setVideoStream}
-            >
-              {/* put your own buttons here */}
-            </ControlTray>
+            />
           </main>
         </div>
       </LiveAPIProvider>

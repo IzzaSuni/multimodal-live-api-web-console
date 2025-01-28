@@ -75,16 +75,21 @@ export default function SidePanel() {
   return (
     <div className={`side-panel ${open ? "open" : ""}`}>
       <header className="top">
-        <h2>Console</h2>
-        {open ? (
-          <button className="opener" onClick={() => setOpen(false)}>
-            <RiSidebarFoldLine color="#b4b8bb" />
-          </button>
-        ) : (
-          <button className="opener" onClick={() => setOpen(true)}>
-            <RiSidebarUnfoldLine color="#b4b8bb" />
-          </button>
-        )}
+        <div className="flex">
+          <h2>Rakamin Base Project</h2>
+
+          {open ? (
+            <button className="opener" onClick={() => setOpen(false)}>
+              <RiSidebarFoldLine color="#b4b8bb" />
+            </button>
+          ) : (
+            <button className="opener" onClick={() => setOpen(true)}>
+              <RiSidebarUnfoldLine color="#b4b8bb" />
+            </button>
+          )}
+        </div>
+
+        <h3 className="indicators-text">Console</h3>
       </header>
       <section className="indicators">
         <Select
@@ -104,8 +109,8 @@ export default function SidePanel() {
               backgroundColor: isFocused
                 ? "var(--Neutral-30)"
                 : isSelected
-                  ? "var(--Neutral-20)"
-                  : undefined,
+                ? "var(--Neutral-20)"
+                : undefined,
             }),
           }}
           defaultValue={selectedOption}

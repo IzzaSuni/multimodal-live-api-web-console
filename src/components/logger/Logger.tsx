@@ -18,9 +18,9 @@ import "./logger.scss";
 
 import { Part } from "@google/generative-ai";
 import cn from "classnames";
-import { ReactNode } from "react";
+import { JSX, ReactNode } from "react";
 import { useLoggerStore } from "../../lib/store-logger";
-import SyntaxHighlighter from "react-syntax-highlighter";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vs2015 as dark } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import {
   ClientContentMessage,
@@ -60,7 +60,7 @@ const LogEntry = ({
       {
         receive: log.type.includes("receive"),
         send: log.type.includes("send"),
-      },
+      }
     )}
   >
     <span className="timestamp">{formatTime(log.date)}</span>
@@ -165,7 +165,7 @@ const ToolCallCancellationLog = ({ message }: Message): JSX.Element => (
           <span className="inline-code" key={`cancel-${id}`}>
             "{id}"
           </span>
-        ),
+        )
       )}
     </span>
   </div>
@@ -181,7 +181,7 @@ const ToolResponseLog = ({ message }: Message): JSX.Element => (
             {JSON.stringify(fc.response, null, "  ")}
           </SyntaxHighlighter>
         </div>
-      ),
+      )
     )}
   </div>
 );
@@ -203,9 +203,8 @@ const ModelTurnLog = ({ message }: Message): JSX.Element => {
   );
 };
 
-const CustomPlainTextLog = (msg: string) => () => (
-  <PlainTextMessage message={msg} />
-);
+const CustomPlainTextLog = (msg: string) => () =>
+  <PlainTextMessage message={msg} />;
 
 export type LoggerFilterType = "conversations" | "tools" | "none";
 
